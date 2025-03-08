@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Split Trip Expenses - Fairly divide trip costs among friends.">
+    <title>Split Trip Expenses</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5548f5ed00.js" crossorigin="anonymous"></script>
+</head>
+<body class="font-roboto bg-gray-100">
+
+    <header class="text-gray-700 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="C:\Users\Sonwa\Gimme my Money-V2\Image\money.png" class="w-12 h-8 rounded-full" alt="Split Trip Logo">
+                <span class="ml-3 text-xl">Split Trip Expenses</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-center text-xl font-semibold mb-4">Enter Each Person's Name and Expense</h2>
+
+        <div id="expense-inputs" class="flex flex-col items-center">
+            <div class="expense-entry flex items-center mb-2">
+                <input type="text" class="name-input px-4 py-2 border rounded-lg mr-2" placeholder="Enter Name">
+                <input type="number" class="expense-input px-4 py-2 border rounded-lg mr-2" placeholder="Enter Amount">
+                <button class="remove-expense bg-red-500 text-white px-3 py-1 rounded">X</button>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button id="add-person" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400">Add Person</button>
+            <button id="calculate-btn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400 ml-2">Calculate</button>
+        </div>
+
+        <h3 class="text-center text-lg font-semibold mt-6">Settlements</h3>
+        <div id="results" class="mt-4 p-4 bg-gray-200 rounded"></div>
+    </main>
+
+    <footer class="text-center mt-8 p-4 text-gray-600">
+        &copy; 2024 Split Trip Expenses. All Rights Reserved.
+    </footer>
+
+    <script>
+        document.getElementById("add-person").addEventListener("click", function () {
+            let inputContainer = document.getElementById("expense-inputs");
+            let newEntry = document.createElement("div");
+            newEntry.classList.add("expense-entry", "flex", "items-center", "mb-2");
+            newEntry.innerHTML = `
+                <input type="text" class="name-input px-4 py-2 border rounded-lg mr-2" placeholder="Enter Name">
+                <input type="number" class="expense-input px-4 py-2 border rounded-lg mr-2" placeholder="Enter Amount">
+                <button class="remove-expense bg-red-500 text-white px-3 py-1 rounded">X</button>
+            `;
+            inputContainer.appendChild(newEntry);
+        });
+
+        document.getElementById("expense-inputs").addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-expense")) {
+                event.target.parentElement.remove();
+            }
+        });
+
+        document.getElementById("calculate-btn").addEventListener("click", function () {
+            let names = Array.from(document.querySelectorAll(".name-input")).map(input => input.value.trim() || "Unknown");
+            let expenses = Array.from(document.querySelectorAll(".expense-input")).map(input => parseFloat(input.value) || 0);
+
+            let resultData = settleExpenses(expenses, names);
+            displayResults(resultData.transactions, resultData.expenses, resultData.names);
+        });
+    </script>
+
+    <script src="Core.js"></script>
+</body>
+</html>
