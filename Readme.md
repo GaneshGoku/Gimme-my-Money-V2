@@ -3,6 +3,10 @@
 ## Overview
 Split Trip Expenses is a simple web application that helps friends fairly divide trip expenses among themselves. The app takes individual expenses as input and calculates the necessary transactions to settle the balance efficiently.
 
+## Purpose
+
+So i created this web app for my personal use, becoz we are a bunch of friends who always go out on trips and for food, and during the trip only a few of them pay and after the trip we distribute the money equally , but calculating who gets how much was a hectic job , so i made this web app. i might create a mobile application on this in future .:>
+
 ## Features
 - **User-friendly interface** for inputting names and expenses.
 - **Automated expense balancing** using a heap-based algorithm.
