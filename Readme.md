@@ -39,7 +39,7 @@ Alternatively, you can host the project on a web server or deploy it using GitHu
 ## File Structure
 ```
 📂 Split-Trip-Expenses
-│── index.html        # Main HTML file
+│── Main.html        # Main HTML file
 │── style.css         # Stylesheet
 │── script.js         # JavaScript logic
 │── README.md         # Project documentation
